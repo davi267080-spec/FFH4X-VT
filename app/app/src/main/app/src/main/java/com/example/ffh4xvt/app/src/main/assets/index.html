@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FFH4X VT</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b12;color:white;font-family:Arial,sans-serif;padding:22px}
+.panel{max-width:420px;margin:30px auto;background:#111827;border:1px solid #26354b;border-radius:18px;padding:22px}
+h1{text-align:center;color:#36e6a0;letter-spacing:2px}
+p{text-align:center;color:#9caec4}
+h3{color:#36e6a0}
+.option{display:flex;justify-content:space-between;align-items:center;padding:13px;background:#1b2638;border-radius:10px;margin:10px 0}
+input[type=checkbox]{width:20px;height:20px;accent-color:#36e6a0}
+input[type=range]{width:100%;accent-color:#36e6a0}
+button{width:100%;padding:14px;margin-top:15px;border:0;border-radius:10px;background:#36e6a0;color:#07110d;font-weight:bold;font-size:16px}
+#status{text-align:center;margin-top:15px;color:#36e6a0}
+#content.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="panel">
+<h1>FFH4X VT</h1>
+<p>PAINEL DE CONFIGURAÇÕES DEMONSTRATIVO</p>
+<button onclick="togglePanel()">ESCONDER / MOSTRAR PAINEL</button>
+<div id="content">
+<h3>Configurações</h3>
+<div class="option">Cabeça <input type="checkbox"></div>
+<div class="option">Pescoço <input type="checkbox"></div>
+<div class="option">Peito <input type="checkbox"></div>
+<h3>Ajustes</h3>
+<label>Controle 1</label>
+<input type="range" min="0" max="100" value="50">
+<label>Controle 2</label>
+<input type="range" min="0" max="100" value="50">
+<label>Controle 3</label>
+<input type="range" min="0" max="100" value="50">
+<button onclick="inject()">INJETAR</button>
+<div id="status">Aguardando ação...</div>
+</div>
+</div>
+<script>
+let timer;
+function togglePanel(){
+ document.getElementById("content").classList.toggle("hidden");
+}
+function inject(){
+ clearTimeout(timer);
+ const status=document.getElementById("status");
+ status.textContent="Processando demonstração...";
+ timer=setTimeout(()=>{
+ status.textContent="Demonstração concluída com sucesso!";
+ },5000);
+}
+document.querySelectorAll("input").forEach(el=>{
+ el.addEventListener("input",()=>{
+  document.getElementById("status").textContent="Configurações alteradas. Toque em INJETAR.";
+ });
+});
+</script>
+</body>
+</html>
